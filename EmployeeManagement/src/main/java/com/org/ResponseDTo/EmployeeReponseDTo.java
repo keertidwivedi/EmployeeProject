@@ -1,31 +1,23 @@
-package com.org.main.Entity;
+package com.org.ResponseDTo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@AllArgsConstructor
+import lombok.*;
+
+
 @NoArgsConstructor
-@Entity
-public class EmployeeMasterEntity {
+@AllArgsConstructor
+public class EmployeeReponseDTo {
+	
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	private int employee_id;
+	
 
-	@Column(name = "firstname")
 	private String firstName;
 
-	@Column(name = "lastname")
+
 	private String lastName;
 
-	@Column(name = "gender")
 	private String gender;
 
 	public int getEmployee_id() {
@@ -62,8 +54,10 @@ public class EmployeeMasterEntity {
 
 	@Override
 	public String toString() {
-		return "EmployeeMasterEntity [employee_id=" + employee_id + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", gender=" + gender + "]";
+		return "EmployeeReponseDTo [employee_id=" + employee_id + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", gender=" + gender + "]";
 	}
+	
+	
 
 }

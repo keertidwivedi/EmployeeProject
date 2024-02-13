@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+</head>
+<body>
+    <h2>Add Employee</h2>
+    <form id="employeeForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required><br><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required><br><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById("employeeForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form data
+            const formData = {
+                firstName: document.getElementsByName("firstName").value,
+                lastName: document.getElementsByName("lastName").value,
+                gender: document.getElementsByName("gender").value
+            };
+
+            // Send data to backend endpoint
+            fetch('/newEmployee', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Employee data saved successfully!');
+                    // Reset form after successful submission
+                    document.getElementById("employeeForm").reset();
+                } else {
+                    alert('Failed to save employee data!');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to save employee data!');
+            });
+        });
+    </script>
+</body>
+</html>
